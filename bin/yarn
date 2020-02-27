@@ -1,0 +1,3 @@
+#!/bin/bash
+
+docker-compose run node sh -c "cd /var/www/symfony && yarn $*"
