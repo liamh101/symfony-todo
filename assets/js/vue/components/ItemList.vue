@@ -12,14 +12,13 @@
 
     export default {
         mixins: [itemMixin],
-        data: () => {return {greeting: 'Hello', items: null}},
-        mounted: init
+        props: {
+            items: {
+                type: Array,
+                required: true,
+            }
+        },
     };
-
-    function init() {
-        this.getItems()
-            .then(items => this.items = items);
-    }
 </script>
 
 <style scoped lang="scss">
