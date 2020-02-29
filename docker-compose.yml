@@ -37,3 +37,5 @@ services:
     build:
       context: ./
       dockerfile: docker/node/Dockerfile
+    volumes:
+      - ./:/var/www/symfony:cached
