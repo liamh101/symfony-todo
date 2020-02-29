@@ -1,28 +1,17 @@
 <template>
-    <div>
-        <p>{{ greeting }} world</p>
+    <div class="container-fluid">
+        <h1 class="text-center">ToDo List!</h1>
 
-        <p v-if="!items">Loading!</p>
-
-        <ul v-if="items">
-            <li v-for="item in items">{{item.name}}</li>
-        </ul>
+        <ItemList/>
     </div>
 </template>
 
 <script>
-    import {itemMixin} from './mixins/item';
+    import ItemList from "./components/ItemList";
 
     export default {
-        mixins: [itemMixin],
-        data: () => {return {greeting: 'Hello', items: null}},
-        mounted: init
+        components: {ItemList},
     };
-
-    function init() {
-       this.getItems()
-        .then(items => this.items = items);
-    }
 </script>
 
 <style scoped lang="scss">
