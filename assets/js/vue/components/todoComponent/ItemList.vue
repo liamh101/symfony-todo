@@ -1,7 +1,7 @@
 <template>
     <div>
         <div v-if="items" class="list-group">
-            <ToDoItem v-for="(item, index) in items" v-bind:item="item" v-on:itemRemoved="removeItemFromList(index)" />
+            <ToDoItem v-for="(item, index) in items" :key="item.id" v-bind:item="item" v-on:itemRemoved="removeItemFromList(index)" />
         </div>
 
         <div v-if="!items.length">
@@ -11,7 +11,7 @@
 </template>
 
 <script>
-    import {itemMixin} from '../mixins/item';
+    import {itemMixin} from '../../mixins/item';
     import ToDoItem from "./ToDoItem";
 
     export default {

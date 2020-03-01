@@ -18,7 +18,7 @@
 </template>
 
 <script>
-    import {itemMixin} from '../mixins/item';
+    import {itemMixin} from '../../mixins/item';
 
     export default {
         mixins: [itemMixin],
