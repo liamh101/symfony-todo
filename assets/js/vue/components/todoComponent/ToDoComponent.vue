@@ -22,7 +22,7 @@
         components: {ItemInput, ItemList},
         data() {return {items:[], loading: true}},
         mounted() {
-            this.getItems()
+            this.getItems({completed: false})
                 .then((items) => {
                     this.items = items;
                     this.loading = false;

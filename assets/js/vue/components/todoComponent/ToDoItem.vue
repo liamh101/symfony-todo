@@ -2,16 +2,26 @@
     <div class="list-group-item">
         <b-row>
             <b-col cols="11">
-                <p v-text="item.name"></p>
+                <p v-text="item.name"/>
             </b-col>
             <b-col cols="1">
+                <b-iconstack font-scale="1.5"
+                             variant="success"
+                             @mouseover="successHover = true"
+                             @mouseleave="successHover = false"
+                             v-on:click="completeItem"
+                >
+                    <b-icon stacked v-bind:icon="successHover ? 'circle-fill' : 'circle'" />
+                    <b-icon stacked icon="check" v-bind:variant="successHover ? 'white' : 'success'"/>
+                </b-iconstack>
                 <b-icon
-                        v-bind:icon="icon"
+                        v-bind:icon="deleteIcon"
                         v-on:click="deleteItem"
                         font-scale="1.5"
-                        @mouseover="icon = 'x-circle-fill'"
-                        @mouseleave="icon = 'x-circle'"
-                        variant="danger"></b-icon>
+                        @mouseover="deleteIcon = 'x-circle-fill'"
+                        @mouseleave="deleteIcon = 'x-circle'"
+                        variant="danger"
+                />
             </b-col>
         </b-row>
     </div>
@@ -24,7 +34,8 @@
         mixins: [itemMixin],
         data() {
             return {
-                icon: 'x-circle',
+                deleteIcon: 'x-circle',
+                successHover: false,
             };
         },
         props: {
@@ -37,6 +48,11 @@
             deleteItem() {
                 this.removeItem(this.item.id)
                     .then(() => this.$emit('itemRemoved', this.item.id))
+            },
+            completeItem() {
+                this.item.completed = true;
+
+                this.updateItem(this.item);
             }
         }
     };
