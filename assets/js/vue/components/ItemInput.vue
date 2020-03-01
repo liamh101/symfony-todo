@@ -1,7 +1,5 @@
 <template>
-    <div>
-        <input class="form-control" v-model="name" v-on:keyup.enter="submit(name)">
-    </div>
+    <input class="form-control" v-model="name" :disabled="saving" v-on:keyup.enter="submit(name)">
 </template>
 
 <script>
@@ -9,14 +7,16 @@
 
     export default {
         mixins: [itemMixin],
-        data: () => {return {name: null}},
+        data: () => {return {name: null, saving: false}},
         methods: {
             submit(name) {
+                this.saving = true;
                 this.createItem(name)
                     .then(item => {
                         this.$emit('newItem', item);
                         this.name = null;
-                    });
+                    })
+                    .finally(()  => this.saving = false);
             }
         }
     };

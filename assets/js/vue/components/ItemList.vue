@@ -1,16 +1,21 @@
 <template>
     <div>
-        <p v-if="!items">Loading!</p>
-        <ul v-if="items" class="list-group">
-            <li class="list-group-item" v-for="item in items">{{item.name}}</li>
-        </ul>
+        <div v-if="items" class="list-group">
+            <ToDoItem v-for="(item, index) in items" v-bind:item="item" v-on:itemRemoved="removeItemFromList(index)" />
+        </div>
+
+        <div v-if="!items.length">
+            <p class="text-center">You have no items!</p>
+        </div>
     </div>
 </template>
 
 <script>
     import {itemMixin} from '../mixins/item';
+    import ToDoItem from "./ToDoItem";
 
     export default {
+        components: {ToDoItem},
         mixins: [itemMixin],
         props: {
             items: {
@@ -18,6 +23,11 @@
                 required: true,
             }
         },
+        methods: {
+            removeItemFromList(itemIndex) {
+                this.items.splice(itemIndex, 1);
+            }
+        }
     };
 </script>
 

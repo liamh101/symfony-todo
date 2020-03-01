@@ -1,9 +1,23 @@
 <template>
-    <div class="container-fluid">
-        <h1 class="text-center">ToDo List!</h1>
-        <ItemInput v-on:newItem="addItem"/>
-        <ItemList v-if="items" v-bind:items="items"/>
-    </div>
+    <b-container>
+        <b-row>
+            <b-col>
+                <h1 class="text-center">ToDo List!</h1>
+            </b-col>
+        </b-row>
+
+        <b-row>
+            <b-col>
+                <ItemInput v-on:newItem="addItem" class="mb-2"/>
+                <ItemList v-if="!loading" v-bind:items="items"/>
+
+                <div class="text-center">
+                    <b-spinner v-if="loading" label="Loading..."></b-spinner>
+                </div>
+
+            </b-col>
+        </b-row>
+    </b-container>
 </template>
 
 <script>
@@ -14,9 +28,13 @@
     export default {
         mixins: [itemMixin],
         components: {ItemInput, ItemList},
-        data() {return {items:[]}},
+        data() {return {items:[], loading: true}},
         mounted() {
-            this.getItems().then((items) => this.items = items);
+            this.getItems()
+                .then((items) => {
+                    this.items = items;
+                    this.loading = false;
+                });
         },
         methods: {
             addItem(item) {
