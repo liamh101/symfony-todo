@@ -9,9 +9,13 @@
 import '../sass/app.scss';
 import App from './vue/App';
 import Vue from 'vue';
+import {BootstrapVue, IconsPlugin} from "bootstrap-vue";
 
 // Need jQuery? Install it with "yarn add jquery", then uncomment to import it.
 // import $ from 'jquery';
+
+Vue.use(BootstrapVue);
+Vue.use(IconsPlugin);
 
 const app = new Vue({
     el: '#app',
