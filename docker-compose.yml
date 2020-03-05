@@ -14,7 +14,9 @@ services:
       context: ./
       dockerfile: docker/composer/Dockerfile
     volumes:
-      - ./:/var/www/symfony:cached
+      - ./composer.json:/var/www/symfony/composer.json:delegated
+      - ./composer.lock:/var/www/symfony/composer.lock:delegated
+      - ./vendor:/var/www/symfony/vendor:delegated
   mysql:
     image: mysql:8
     ports:
