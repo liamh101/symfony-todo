@@ -40,4 +40,8 @@ services:
       context: ./
       dockerfile: docker/node/Dockerfile
     volumes:
-      - ./:/var/www/symfony:cached
+      - ./yarn.lock:/var/www/symfony/yarn.lock:delegated
+      - ./package.json:/var/www/symfony/package.json:delegated
+      - ./node_modules:/var/www/symfony/node_modules:delegated
+      - ./public:/var/www/symfony/public:delegated
+      - ./assets:/var/www/symfony/assets:cached
