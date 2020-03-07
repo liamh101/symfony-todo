@@ -47,3 +47,12 @@ services:
       - ./node_modules:/var/www/symfony/node_modules:delegated
       - ./public:/var/www/symfony/public:delegated
       - ./assets:/var/www/symfony/assets:cached
+  codeception:
+    image: codeception/codeception
+    depends_on:
+      - chrome
+      - php
+    volumes:
+    - ./:/var/www/symfony
+  chrome:
+    image: selenium/standalone-chrome
