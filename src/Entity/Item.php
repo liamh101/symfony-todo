@@ -5,11 +5,11 @@ namespace App\Entity;
 use ApiPlatform\Core\Annotation\ApiFilter;
 use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\ORM\Mapping as ORM;
-use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\BooleanFilter;
 
 /**
  * @ApiResource()
- * @ApiFilter(SearchFilter::class, properties={"completed": "exact"})
+ * @ApiFilter(BooleanFilter::class, properties={"completed"})
  * @ORM\Entity(repositoryClass="App\Repository\ItemRepository")
  */
 class Item

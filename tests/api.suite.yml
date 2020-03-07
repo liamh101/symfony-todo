@@ -6,7 +6,11 @@ modules:
         - REST:
             url: /api
             depends: Symfony
-            part: Json
+            part: json
         - Symfony:
               app_path: 'src'
               environment: 'test'
+        - Db:
+            dsn: 'mysql:host=mysql;dbname=symfony-db-test'
+            user: root
+            password: root

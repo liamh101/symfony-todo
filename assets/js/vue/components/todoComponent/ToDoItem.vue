@@ -1,11 +1,11 @@
 <template>
     <div class="list-group-item" v-bind:class="{disabled: disable}">
         <b-row>
-            <b-col cols="11">
+            <b-col cols="10">
                 <p v-text="item.name"/>
             </b-col>
-            <b-col cols="1">
-                <b-iconstack font-scale="1.5"
+            <b-col cols="2">
+                <b-iconstack font-scale="3"
                              class="action-button"
                              variant="success"
                              @mouseover="successHover = true"
@@ -20,7 +20,7 @@
                         v-bind:icon="deleteIcon"
                         v-on:click="deleteItem"
                         class="action-button"
-                        font-scale="1.5"
+                        font-scale="3"
                         @mouseover="deleteIcon = 'x-circle-fill'"
                         @mouseleave="deleteIcon = 'x-circle'"
                         variant="danger"

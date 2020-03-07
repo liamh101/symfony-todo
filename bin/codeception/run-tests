@@ -1,2 +1,2 @@
 #!/bin/bash
-docker-compose exec php sh -c "cd /var/www/symfony && php vendor/bin/codecept run -vvv"
+docker-compose exec php sh -c "cd /var/www/symfony && php vendor/bin/codecept run -v"
