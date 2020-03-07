@@ -2,6 +2,7 @@ actor: ApiTester
 modules:
     enabled:
         - \Helper\Api
+        - \Helper\Generic
         - REST:
             url: /api
             depends: Symfony
