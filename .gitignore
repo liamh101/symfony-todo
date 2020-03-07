@@ -126,6 +126,7 @@ fabric.properties
 /.env.local
 /.env.local.php
 /.env.*.local
+/.env.test
 /config/secrets/prod/prod.decrypt.private.php
 /public/bundles/
 /var/
