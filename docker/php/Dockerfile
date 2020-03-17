@@ -12,7 +12,6 @@ COPY package.json package.json
 COPY yarn.lock yarn.lock
 COPY webpack.config.js webpack.config.js
 COPY .env .env
-COPY .env.local .env.local
 
 RUN yarn install
 RUN yarn run dev
