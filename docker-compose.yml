@@ -4,19 +4,15 @@ services:
     build:
       context: ./
       dockerfile: docker/php/Dockerfile
-    depends_on:
-      - mysql
     volumes:
       - ./:/var/www/symfony:cached
       - ./docker/php/xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini
   composer:
-    build:
-      context: ./
-      dockerfile: docker/composer/Dockerfile
+    image: composer:latest
     volumes:
       - ./composer.json:/var/www/symfony/composer.json:delegated
       - ./composer.lock:/var/www/symfony/composer.lock:delegated
-      - ./vendor:/var/www/symfony/vendor:delegated
+      - ./vendor:/var/www/symfony/vendor
   mysql:
     image: mysql:8
     ports:
@@ -34,19 +30,19 @@ services:
     ports:
       - '8080:80'
     volumes:
-      - ./:/var/www/symfony:cached
+      - ./:/var/www/symfony
       - ./docker/nginx/site.conf:/etc/nginx/conf.d/default.conf
     restart: always
   node:
-    build:
-      context: ./
-      dockerfile: docker/node/Dockerfile
+    image: node:latest
     volumes:
       - ./yarn.lock:/var/www/symfony/yarn.lock:delegated
       - ./package.json:/var/www/symfony/package.json:delegated
-      - ./node_modules:/var/www/symfony/node_modules:delegated
+      - ./node_modules:/var/www/symfony/node_modules
       - ./public:/var/www/symfony/public:delegated
       - ./assets:/var/www/symfony/assets:cached
+      - ./webpack.config.js:/var/www/symfony/webpack.config.js
+      - ./.env:/var/www/symfony/.env
   codeception:
     image: codeception/codeception
     depends_on:
