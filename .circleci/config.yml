@@ -8,6 +8,8 @@ jobs:
     docker:
       # Specify the version you desire here
       - image: circleci/php:7.4.3-fpm-buster
+        environment:
+          DATABASE_URL: mysql://root:root@127.0.0.1/symfony-db-test?serverVersion=8
 
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
@@ -15,6 +17,8 @@ jobs:
       # Using the RAM variation mitigates I/O contention
       # for database intensive operations.
       - image: circleci/mysql:8.0.3
+        environment:
+          MYSQL_ROOT_PASSWORD: root
       #
       # - image: redis:2.8.19
 
